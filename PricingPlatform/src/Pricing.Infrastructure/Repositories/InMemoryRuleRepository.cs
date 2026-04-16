@@ -1,3 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Pricing.Domain.Interfaces;
+using Pricing.Domain.Models;
+
+namespace Pricing.Infrastructure.Repositories;
+
 public class InMemoryRuleRepository : IRuleRepository
 {
     private readonly List<PricingRule> _rules = new();

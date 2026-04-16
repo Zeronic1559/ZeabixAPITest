@@ -1,6 +1,7 @@
-
 using Pricing.Domain.Interfaces;
 using Pricing.Domain.Models;
+
+namespace Pricing.Application;
 
 public class WeightRule : IPricingRule
 {

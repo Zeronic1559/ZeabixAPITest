@@ -1,9 +1,11 @@
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
+using System;
 using System.Net;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 using Pricing.Domain.Models;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace Pricing.Integration.Tests;
 

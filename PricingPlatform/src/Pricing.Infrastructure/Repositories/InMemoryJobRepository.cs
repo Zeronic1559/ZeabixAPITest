@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using Pricing.Domain.Interfaces;
+using Pricing.Domain.Models;
+
+namespace Pricing.Infrastructure.Repositories;
+
 public class InMemoryJobRepository : IJobRepository
 {
     private readonly Dictionary<Guid, JobModel> _jobs = new();
