@@ -1,0 +1,38 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Weight-based Surcharge",
+    "priority": 1,
+    "effectiveFrom": "2026-01-01T00:00:00Z",
+    "effectiveTo": "2026-12-31T23:59:59Z",
+    "isActive": true,
+    "description": "Adds 10% surcharge for every 5kg of weight"
+  },
+  {
+    "id": "660f9511-f30c-52e5-b827-557766551111",
+    "name": "Remote Location Fee",
+    "priority": 2,
+    "effectiveFrom": "2026-01-01T00:00:00Z",
+    "effectiveTo": "2026-12-31T23:59:59Z",
+    "isActive": true,
+    "description": "Adds 15% surcharge for remote destinations"
+  },
+  {
+    "id": "770a0622-e40d-63f6-c938-668877662222",
+    "name": "Rush Order Surcharge",
+    "priority": 3,
+    "effectiveFrom": "2026-01-01T00:00:00Z",
+    "effectiveTo": "2026-12-31T23:59:59Z",
+    "isActive": true,
+    "description": "Adds 5% surcharge for rush orders (past request time)"
+  },
+  {
+    "id": "880b1733-f51e-74g7-d049-779988773333",
+    "name": "Seasonal Discount",
+    "priority": 4,
+    "effectiveFrom": "2026-11-01T00:00:00Z",
+    "effectiveTo": "2026-12-31T23:59:59Z",
+    "isActive": false,
+    "description": "Upcoming seasonal discount (not yet active)"
+  }
+]

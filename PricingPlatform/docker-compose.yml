@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  pricing-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pricing-platform-api
+    ports:
+      - "5000:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      DOTNET_USE_POLLING_FILE_WATCHER: 1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - .:/app
+      - /app/bin
+      - /app/obj
+    networks:
+      - pricing-network
+    restart: unless-stopped
+
+networks:
+  pricing-network:
+    driver: bridge

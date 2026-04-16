@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "Pricing Platform API",
+    "description": "Enterprise pricing engine API with dynamic quote calculations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["health"]
+        },
+        "description": "Check if the API is healthy and running"
+      }
+    },
+    {
+      "name": "Calculate Single Quote",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"basePrice\": 100,\n  \"weight\": 5.5,\n  \"location\": \"remote\",\n  \"destination\": \"International\",\n  \"requestTime\": \"2026-04-17T10:00:00Z\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/quotes/price",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["quotes", "price"]
+        },
+        "description": "Calculate a single quote with given parameters"
+      }
+    },
+    {
+      "name": "Submit Bulk Quote Request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"basePrice\": 100,\n    \"weight\": 5.5,\n    \"location\": \"remote\",\n    \"destination\": \"International\",\n    \"requestTime\": \"2026-04-17T10:00:00Z\"\n  },\n  {\n    \"basePrice\": 200,\n    \"weight\": 2.0,\n    \"location\": \"local\",\n    \"destination\": \"Domestic\",\n    \"requestTime\": \"2026-04-17T10:00:00Z\"\n  }\n]"
+        },
+        "url": {
+          "raw": "http://localhost:5000/quotes/bulk",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["quotes", "bulk"]
+        },
+        "description": "Submit multiple quotes for batch processing"
+      }
+    },
+    {
+      "name": "Get Job Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/jobs/550e8400-e29b-41d4-a716-446655440000",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["jobs", "550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "description": "Get the status and results of a bulk quote job"
+      }
+    },
+    {
+      "name": "Get All Rules",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/rules",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["rules"]
+        },
+        "description": "Retrieve all available pricing rules"
+      }
+    },
+    {
+      "name": "Get Rule by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/rules/550e8400-e29b-41d4-a716-446655440000",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["rules", "550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "description": "Get a specific pricing rule by ID"
+      }
+    },
+    {
+      "name": "Create New Rule",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Premium Weight Rule\",\n  \"priority\": 1,\n  \"effectiveFrom\": \"2026-04-16T00:00:00Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59Z\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/rules",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["rules"]
+        },
+        "description": "Create a new pricing rule"
+      }
+    },
+    {
+      "name": "Update Rule",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"Updated Weight Rule\",\n  \"priority\": 2,\n  \"effectiveFrom\": \"2026-04-16T00:00:00Z\",\n  \"effectiveTo\": \"2026-12-31T23:59:59Z\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/rules/550e8400-e29b-41d4-a716-446655440000",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["rules", "550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "description": "Update an existing pricing rule"
+      }
+    },
+    {
+      "name": "Delete Rule",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/rules/550e8400-e29b-41d4-a716-446655440000",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["rules", "550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "description": "Delete a pricing rule"
+      }
+    }
+  ]
+}

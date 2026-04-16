@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pricing Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex items-center justify-center">
+
+<div class="bg-white w-[400px] p-8 rounded-2xl shadow-2xl">
+  
+  <h1 class="text-2xl font-bold text-center mb-6">🚀 Pricing Calculator</h1>
+
+  <div class="space-y-3">
+    <input id="basePrice" type="number" placeholder="Base Price"
+      class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <input id="weight" type="number" placeholder="Weight"
+      class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <input id="destination" type="text" placeholder="Destination (e.g. Remote)"
+      class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+  </div>
+
+  <button onclick="calculate()"
+    class="w-full mt-5 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition">
+    Calculate Price
+  </button>
+
+  <div id="loading" class="text-center mt-4 hidden text-gray-500">
+    ⏳ Calculating...
+  </div>
+
+  <div id="result"
+    class="text-center text-2xl font-semibold mt-4 text-green-600"></div>
+
+</div>
+
+<script>
+async function calculate() {
+    const loading = document.getElementById("loading");
+    const result = document.getElementById("result");
+
+    loading.classList.remove("hidden");
+    result.innerText = "";
+
+    const data = {
+        basePrice: parseFloat(document.getElementById("basePrice").value),
+        weight: parseFloat(document.getElementById("weight").value),
+        destination: document.getElementById("destination").value
+    };
+
+    try {
+        const res = await fetch("/quotes/price", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+
+        const json = await res.json();
+
+        result.innerText = "💰 Final Price: " + json.finalPrice;
+    } catch (e) {
+        result.innerText = "❌ API Error";
+    }
+
+    loading.classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
